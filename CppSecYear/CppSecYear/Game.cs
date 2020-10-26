@@ -61,8 +61,6 @@ namespace CppSecYear
 
         public void Click(Point clickCoord)
         {
-            whichTurn = whichTurn == PlayerTurns.XPlayer ? PlayerTurns.OPlayer : PlayerTurns.XPlayer;
-
             if (clickCoord.X < fieldCoord.X
                 || clickCoord.Y < fieldCoord.Y
                 || clickCoord.X > fieldCoord.X + fieldDrawSize
@@ -75,6 +73,9 @@ namespace CppSecYear
             clickCoord.Y -= ((clickCoord.Y - fieldCoord.Y) % (fieldDrawSize / 3));
 
             DrawFigure(clickCoord);
+
+            whichTurn = whichTurn == PlayerTurns.XPlayer ? PlayerTurns.OPlayer : PlayerTurns.XPlayer;
+
             field.Invalidate();
         }
 
