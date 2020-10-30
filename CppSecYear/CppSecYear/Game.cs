@@ -16,7 +16,7 @@ namespace CppSecYear
         TicTacToe[,] ticTacToes = new TicTacToe[3, 3];
 
         PictureBox field;
-
+        
         Bitmap frame;
         Graphics g;
 
