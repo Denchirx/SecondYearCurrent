@@ -102,6 +102,11 @@ namespace CppSecYear
                 ticTacToes[cell[0], cell[1]] = TicTacToe.circle;
             }
 
+            if (CheckIfWin())
+            {
+                MessageBox.Show(whichTurn.ToString() + " WINS!" );
+            }
+
             whichTurn =
                 whichTurn == PlayerTurns.XPlayer
                 ? PlayerTurns.OPlayer
@@ -133,6 +138,54 @@ namespace CppSecYear
             result[1] = (coord.Y - fieldCoord.Y) / (fieldDrawSize / 3);
 
             return result;
+        }
+
+        bool CheckIfWin()
+        {
+            for (int i = 0; i < 3; i++)
+            { 
+                if (CheckRow(i) || CheckColumn(i))
+                {
+                    return true;
+                }
+            }
+
+            if (
+                (ticTacToes[0, 0] == ticTacToes[1, 1]
+                && ticTacToes[0, 0] == ticTacToes[2, 2]
+                && ticTacToes[0, 0] != TicTacToe.empty)
+                ||
+                (ticTacToes[2, 0] == ticTacToes[1, 1]
+                && ticTacToes[2, 0] == ticTacToes[0, 2]
+                && ticTacToes[2, 0] != TicTacToe.empty)
+                )
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        bool CheckRow(int y)
+        {
+            if (ticTacToes[0, y] == ticTacToes[1, y]
+                && ticTacToes[0, y] == ticTacToes[2, y]
+                 && ticTacToes[0, y] != TicTacToe.empty)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        bool CheckColumn(int x) 
+        {
+            if (ticTacToes[x, 0] == ticTacToes[x, 1]
+                && ticTacToes[x, 0] == ticTacToes[x, 2]
+                && ticTacToes[x, 0] != TicTacToe.empty)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }
