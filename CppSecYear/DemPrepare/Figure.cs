@@ -14,13 +14,12 @@ namespace DemPrepare
         int vertexNum;
         float offset;
 
-        public Figure(Point coord, int vertexNum, 
-            double offset, int size = 100)
+        public Figure(Point coord, int vertexNum, int size = 100)
         {
             this.coord = coord;
             this.size = size;
             this.vertexNum = vertexNum;
-            this.offset = (float)offset;
+            this.offset = vertexNum == 4 ? (float)(Math.PI / 4) : (float)(-Math.PI / 2);
         }
 
         public void Show(Graphics g)
@@ -36,7 +35,8 @@ namespace DemPrepare
 
             for (int i = 0; i < vertexNum; i++)
             {
-                myPoints[i] = new Point((int)(size * Math.Cos(step * i + offset)), (int)(size * Math.Sin(step * i + offset)));
+                myPoints[i] = new Point((int)(size * Math.Cos(step * i + offset)), 
+                    (int)(size * Math.Sin(step * i + offset)));
                 myPoints[i].Offset(coord);
             }
 
