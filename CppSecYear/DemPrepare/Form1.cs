@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using static DemPrepare.GlobalVar;
+
 namespace DemPrepare
 {
     public partial class Form1 : Form
@@ -36,6 +38,66 @@ namespace DemPrepare
             f = new Figure(new Point(100, 100), 5);
             f.Show(g3);
             pictureBox3.Image = b3;
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            if (currMode == WhichFigure.triangle)
+            {
+                currMode = WhichFigure.empty;
+            }
+            else
+            {
+                currMode = WhichFigure.triangle;
+            }
+            this.Invalidate();
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            if (currMode == WhichFigure.square)
+            {
+                currMode = WhichFigure.empty;
+            }
+            else
+            {
+                currMode = WhichFigure.square;
+            }
+            this.Invalidate();
+        }
+
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+            if (currMode == WhichFigure.pentagon)
+            {
+                currMode = WhichFigure.empty;
+            }
+            else
+            {
+                currMode = WhichFigure.pentagon;
+            }
+            this.Invalidate();
+        }
+
+        private void Form1_Paint(object sender, PaintEventArgs e)
+        {
+            for (int i = 1; i <= 3; i++)
+            {
+                this.Controls["pictureBox" + i].BackColor = Color.White;
+            }
+
+            switch (currMode)
+            {
+                case WhichFigure.triangle:
+                    pictureBox1.BackColor = Color.Green;
+                    break;
+                case WhichFigure.square:
+                    pictureBox2.BackColor = Color.Green;
+                    break;
+                case WhichFigure.pentagon:
+                    pictureBox3.BackColor = Color.Green;
+                    break;
+            }
         }
     }
 }

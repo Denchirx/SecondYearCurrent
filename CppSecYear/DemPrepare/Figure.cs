@@ -5,9 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using static DemPrepare.GlobalVar;
+
 namespace DemPrepare
 {
-    class Figure
+    public class Figure
     {
         Point coord;
         int size;
