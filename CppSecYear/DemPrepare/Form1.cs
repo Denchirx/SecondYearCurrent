@@ -14,9 +14,11 @@ namespace DemPrepare
 {
     public partial class Form1 : Form
     {
+        GraphicsLayer gl;
         public Form1()
         {
             InitializeComponent();
+            gl = new GraphicsLayer(pictureBox4);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -98,6 +100,20 @@ namespace DemPrepare
                     pictureBox3.BackColor = Color.Green;
                     break;
             }
+
+            gl.getNextFrame();
+        }
+
+        private void pictureBox4_MouseDown(object sender, MouseEventArgs e)
+        {
+            gl.ClickDown(e);
+            this.Invalidate();
+        }
+
+        private void pictureBox4_MouseUp(object sender, MouseEventArgs e)
+        {
+            gl.ClickUp(e);
+            this.Invalidate();
         }
     }
 }

@@ -12,5 +12,6 @@ namespace DemPrepare
     {
         public static WhichFigure currMode = WhichFigure.empty;
         public static List<Figure> myFigures = new List<Figure>();
+        public static Figure currentFigure = null;
     }
 }

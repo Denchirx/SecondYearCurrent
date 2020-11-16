@@ -24,31 +24,41 @@ namespace DemPrepare
             g = Graphics.FromImage(b);
         }
 
-        public void Click(MouseEventArgs e)
+        public void ClickDown(MouseEventArgs e)
         {
-            Figure f;
+          
             switch (currMode)
             {
                 case WhichFigure.triangle:
-                    f = new Figure(new Point(100, 100), 3);
-                    myFigures.Add(f);
+                    currentFigure = new Figure(e.Location, 3);
                     break;
                 case WhichFigure.square:
-                    f = new Figure(new Point(100, 100), 4);
-                    myFigures.Add(f);
+                    currentFigure = new Figure(e.Location, 4);
                     break;
                 case WhichFigure.pentagon:
-                    f = new Figure(new Point(100, 100), 5);
-                    myFigures.Add(f);
+                    currentFigure = new Figure(e.Location, 5);
                     break;
             }
             currMode = WhichFigure.empty;
+        }
+
+        public void ClickUp(MouseEventArgs e)
+        {
+            if (currentFigure != null)
+            { 
+                myFigures.Add(currentFigure);
+                currentFigure = null;
+            }
         }
 
         public void getNextFrame()
         {
             g.Clear(Color.White);
 
+            foreach (Figure f in myFigures)
+            {
+                f.Show(g);
+            }
 
             pb.Image = b;
         }
