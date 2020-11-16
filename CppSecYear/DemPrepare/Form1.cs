@@ -115,5 +115,10 @@ namespace DemPrepare
             gl.ClickUp(e);
             this.Invalidate();
         }
+
+        private void pictureBox4_MouseMove(object sender, MouseEventArgs e)
+        {
+            gl.ClickMove(e);
+        }
     }
 }

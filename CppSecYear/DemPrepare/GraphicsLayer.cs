@@ -16,6 +16,7 @@ namespace DemPrepare
         Graphics g;
 
         PictureBox pb;
+        Point clickDownLoc = Point.Empty;
 
         public GraphicsLayer(PictureBox pb)
         {
@@ -25,8 +26,7 @@ namespace DemPrepare
         }
 
         public void ClickDown(MouseEventArgs e)
-        {
-          
+        {          
             switch (currMode)
             {
                 case WhichFigure.triangle:
@@ -40,6 +40,12 @@ namespace DemPrepare
                     break;
             }
             currMode = WhichFigure.empty;
+            clickDownLoc = e.Location;
+        }
+
+        public void ClickMove(MouseEventArgs e)
+        { 
+
         }
 
         public void ClickUp(MouseEventArgs e)
@@ -54,6 +60,11 @@ namespace DemPrepare
         public void getNextFrame()
         {
             g.Clear(Color.White);
+
+            if (currentFigure != null)
+            {
+                currentFigure.Show(g);
+            }
 
             foreach (Figure f in myFigures)
             {
