@@ -26,7 +26,7 @@ namespace DemPrepare
         }
 
         public void ClickDown(MouseEventArgs e)
-        {          
+        {
             switch (currMode)
             {
                 case WhichFigure.triangle:
@@ -44,14 +44,22 @@ namespace DemPrepare
         }
 
         public void ClickMove(MouseEventArgs e)
-        { 
+        {
+            if (currentFigure != null)
+            {
+                int s = (int)Math.Sqrt(Math.Pow(
+                    clickDownLoc.X - e.Location.X, 2)
+                    + Math.Pow(clickDownLoc.Y - e.Location.Y, 2)
+                    );
+                currentFigure.SetSize(s);
+            }
 
         }
 
         public void ClickUp(MouseEventArgs e)
         {
             if (currentFigure != null)
-            { 
+            {
                 myFigures.Add(currentFigure);
                 currentFigure = null;
             }

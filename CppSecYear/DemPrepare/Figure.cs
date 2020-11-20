@@ -44,5 +44,10 @@ namespace DemPrepare
 
             return myPoints;
         }
+
+        public void SetSize(int s)
+        {
+            size = s;
+        }
     }
 }
