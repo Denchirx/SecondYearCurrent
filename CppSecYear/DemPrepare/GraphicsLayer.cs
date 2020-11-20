@@ -38,20 +38,44 @@ namespace DemPrepare
                 case WhichFigure.pentagon:
                     currentFigure = new Figure(e.Location, 5);
                     break;
+                case WhichFigure.empty:
+                    selectedFigure = FindClosestFigure(e.Location);
+                    if (selectedFigure != null)
+                    {
+                        currMode = WhichFigure.selected;
+                    }
+                    break;
+                case WhichFigure.selected:
+                    selectedFigure = FindClosestFigure(e.Location);
+                    break;
             }
-            currMode = WhichFigure.empty;
             clickDownLoc = e.Location;
+        }
+
+        Figure FindClosestFigure(Point p)
+        {
+            Figure res = null;
+            foreach (Figure f in myFigures)
+            {
+                if (f.Dist(p) < f.Size
+                    && (res == null || f.Dist(p) < res.Dist(p)))
+                {
+                    res = f;
+                }
+            }
+            return res;
         }
 
         public void ClickMove(MouseEventArgs e)
         {
-            if (currentFigure != null)
+            if (e.Button == MouseButtons.Left
+                    && currentFigure != null)
             {
                 int s = (int)Math.Sqrt(Math.Pow(
                     clickDownLoc.X - e.Location.X, 2)
                     + Math.Pow(clickDownLoc.Y - e.Location.Y, 2)
                     );
-                currentFigure.SetSize(s);
+                currentFigure.Size = s;
             }
 
         }
@@ -62,6 +86,7 @@ namespace DemPrepare
             {
                 myFigures.Add(currentFigure);
                 currentFigure = null;
+                currMode = WhichFigure.empty;
             }
         }
 
@@ -77,6 +102,11 @@ namespace DemPrepare
             foreach (Figure f in myFigures)
             {
                 f.Show(g);
+            }
+
+            if (selectedFigure != null)
+            {
+                selectedFigure.ShowSelection(g);
             }
 
             pb.Image = b;

@@ -16,6 +16,22 @@ namespace DemPrepare
         int vertexNum;
         float offset;
 
+        public int Size
+        {
+            get
+            {
+                return size;
+            }
+            set
+            {
+                if (value > 0)
+                {
+                    size = value;
+                }
+            }
+
+        }
+
         public Figure(Point coord, int vertexNum, int size = 100)
         {
             this.coord = coord;
@@ -45,9 +61,19 @@ namespace DemPrepare
             return myPoints;
         }
 
-        public void SetSize(int s)
+
+        public float Dist(Point p)
         {
-            size = s;
+            return (float)Math.Sqrt(Math.Pow(p.X - coord.X, 2) + Math.Pow(p.Y - coord.Y, 2));
+        }
+
+        public void ShowSelection(Graphics g)
+        {
+            Point[] pts = GetVertexes();
+            foreach (Point p in pts)
+            {
+                g.FillEllipse(Brushes.Black, p.X - 5, p.Y - 5, 10, 10);
+            }
         }
     }
 }

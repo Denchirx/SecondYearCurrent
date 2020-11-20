@@ -118,11 +118,8 @@ namespace DemPrepare
 
         private void pictureBox4_MouseMove(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Left)
-            {
                 gl.ClickMove(e);
                 this.Invalidate();
-            }
         }
     }
 }

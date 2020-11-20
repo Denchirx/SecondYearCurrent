@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace DemPrepare
 {
-    public enum WhichFigure { empty, triangle, square, pentagon};
+    public enum WhichFigure { empty, triangle, square, pentagon, selected };
 
     public static class GlobalVar
     {
         public static WhichFigure currMode = WhichFigure.empty;
         public static List<Figure> myFigures = new List<Figure>();
         public static Figure currentFigure = null;
+        public static Figure selectedFigure = null;
     }
 }
