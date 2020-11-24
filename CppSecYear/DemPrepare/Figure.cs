@@ -15,6 +15,7 @@ namespace DemPrepare
         int size;
         int vertexNum;
         float offset;
+        float offOffSet = 0.0f;
 
         public int Size
         {
@@ -53,8 +54,8 @@ namespace DemPrepare
 
             for (int i = 0; i < vertexNum; i++)
             {
-                myPoints[i] = new Point((int)(size * Math.Cos(step * i + offset)), 
-                    (int)(size * Math.Sin(step * i + offset)));
+                myPoints[i] = new Point((int)(size * Math.Cos(step * i + offset + offOffSet)), 
+                    (int)(size * Math.Sin(step * i + offset + offOffSet)));
                 myPoints[i].Offset(coord);
             }
 
@@ -74,6 +75,12 @@ namespace DemPrepare
             {
                 g.FillEllipse(Brushes.Black, p.X - 5, p.Y - 5, 10, 10);
             }
+        }
+
+        public void MakeTurn(int turn)
+        {
+            float rad = (turn * (float)Math.PI) / 180;
+            offOffSet = rad;
         }
     }
 }

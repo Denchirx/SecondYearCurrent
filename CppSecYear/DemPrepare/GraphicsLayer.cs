@@ -68,16 +68,27 @@ namespace DemPrepare
 
         public void ClickMove(MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Left
-                    && currentFigure != null)
+            switch (e.Button)
             {
-                int s = (int)Math.Sqrt(Math.Pow(
-                    clickDownLoc.X - e.Location.X, 2)
-                    + Math.Pow(clickDownLoc.Y - e.Location.Y, 2)
-                    );
-                currentFigure.Size = s;
-            }
+                case MouseButtons.Left:
+                    if (currentFigure != null)
+                    {
+                        int s = (int)Math.Sqrt(Math.Pow(
+                            clickDownLoc.X - e.Location.X, 2)
+                            + Math.Pow(clickDownLoc.Y - e.Location.Y, 2)
+                            );
+                        currentFigure.Size = s;
+                    }
+                    break;
+                case MouseButtons.Right:
+                    if (selectedFigure != null)
+                    {
+                        int turn = (e.Location.X - clickDownLoc.X);
+                        selectedFigure.MakeTurn(turn);
+                    }
+                    break;
 
+            }
         }
 
         public void ClickUp(MouseEventArgs e)
