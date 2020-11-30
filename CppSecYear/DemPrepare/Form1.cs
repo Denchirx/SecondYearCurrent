@@ -118,8 +118,21 @@ namespace DemPrepare
 
         private void pictureBox4_MouseMove(object sender, MouseEventArgs e)
         {
-                gl.ClickMove(e);
-                this.Invalidate();
+            gl.ClickMove(e);
+            this.Invalidate();
+        }
+
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete)
+            {
+                if (selectedFigure != null)
+                {
+                    myFigures.Remove(selectedFigure);
+                    selectedFigure = null;
+                    this.Invalidate();
+                }
+            }
         }
     }
 }

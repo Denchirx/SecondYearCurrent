@@ -17,6 +17,18 @@ namespace DemPrepare
         float offset;
         float offOffSet = 0.0f;
 
+        public Point Coord 
+        {
+            get
+            {
+                return coord;
+            }
+            set
+            {
+                coord = value;
+            }
+        }
+
         public int Size
         {
             get

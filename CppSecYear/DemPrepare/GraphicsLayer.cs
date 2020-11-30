@@ -71,13 +71,20 @@ namespace DemPrepare
             switch (e.Button)
             {
                 case MouseButtons.Left:
-                    if (currentFigure != null)
+                    if (currMode == WhichFigure.selected)
                     {
-                        int s = (int)Math.Sqrt(Math.Pow(
-                            clickDownLoc.X - e.Location.X, 2)
-                            + Math.Pow(clickDownLoc.Y - e.Location.Y, 2)
-                            );
-                        currentFigure.Size = s;
+                        selectedFigure.Coord = e.Location;
+                    }
+                    else
+                    {
+                        if (currentFigure != null)
+                        {
+                            int s = (int)Math.Sqrt(Math.Pow(
+                                clickDownLoc.X - e.Location.X, 2)
+                                + Math.Pow(clickDownLoc.Y - e.Location.Y, 2)
+                                );
+                            currentFigure.Size = s;
+                        }
                     }
                     break;
                 case MouseButtons.Right:
