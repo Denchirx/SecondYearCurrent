@@ -17,7 +17,7 @@ namespace DemPrepare
         float offset;
         float offOffSet = 0.0f;
 
-        public Point Coord 
+        public Point Coord
         {
             get
             {
@@ -66,7 +66,7 @@ namespace DemPrepare
 
             for (int i = 0; i < vertexNum; i++)
             {
-                myPoints[i] = new Point((int)(size * Math.Cos(step * i + offset + offOffSet)), 
+                myPoints[i] = new Point((int)(size * Math.Cos(step * i + offset + offOffSet)),
                     (int)(size * Math.Sin(step * i + offset + offOffSet)));
                 myPoints[i].Offset(coord);
             }
@@ -83,9 +83,38 @@ namespace DemPrepare
         public void ShowSelection(Graphics g)
         {
             Point[] pts = GetVertexes();
-            foreach (Point p in pts)
+            switch (sm)
             {
-                g.FillEllipse(Brushes.Black, p.X - 5, p.Y - 5, 10, 10);
+                case SelectMode.points:                    
+                    foreach (Point p in pts)
+                    {
+                        g.FillEllipse(Brushes.Black, p.X - 5, p.Y - 5, 10, 10);
+                    }
+                    break;
+                case SelectMode.rec:
+                    Point min = new Point(int.MaxValue, int.MaxValue), 
+                        max = new Point(0, 0);
+                    foreach (Point p in pts)
+                    {
+                        if (p.X <= min.X)
+                        {
+                            min.X = p.X;
+                        }
+                        if (p.Y <= min.Y)
+                        {
+                            min.Y = p.Y;
+                        }
+                        if (p.X >= max.X)
+                        {
+                            max.X = p.X;
+                        }
+                        if (p.Y >= max.Y)
+                        {
+                            max.Y = p.Y;
+                        }
+                    }
+                    g.DrawRectangle(Pens.Black, min.X, min.Y, max.X - min.X, max.Y - min.Y);
+                    break;
             }
         }
 

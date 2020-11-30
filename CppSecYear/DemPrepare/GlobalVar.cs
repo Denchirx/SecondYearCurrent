@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 namespace DemPrepare
 {
     public enum WhichFigure { empty, triangle, square, pentagon, selected };
+    public enum SelectMode { points, rec };
 
     public static class GlobalVar
     {
@@ -14,5 +15,6 @@ namespace DemPrepare
         public static List<Figure> myFigures = new List<Figure>();
         public static Figure currentFigure = null;
         public static Figure selectedFigure = null;
+        public static SelectMode sm = SelectMode.rec;
     }
 }
